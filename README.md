@@ -36,16 +36,28 @@ var location = {
   protocol: 'http',
   host: 'server.com',
   pathname '/foo'
+} //OR get this from window.location
+
+var protocolMap = {http: 'ws', https: 'wss'}
+
+var defaultProtocol : 'ws'
+
+var rurl = require('relative-url')
+function relative (url) {
+  return rurl(url, location, protocolMap, defaultProtocol) 
 }
+
+
 ```
 and the above mentioned settings (suitable for websockets)
 output will be as following.
-```
-/ => ws://server.com/
-/bar => ws://server.com/bar
-//client.com => ws://client.com/
-//:9999 => ws://server.com:9999/
-?q=search => ws://server.com/foo?q=search
+``` js
+
+relative('/')            // => ws://server.com/
+relative('/bar')         // => ws://server.com/bar
+relative('//client.com') // => ws://client.com/
+relative('//:9999')      // => ws://server.com:9999/
+relative('?q=search'     // => ws://server.com/foo?q=search
 ```
 
 note that // denotes the start of the host.
@@ -58,6 +70,11 @@ and got scared of learning too much about urls.
 ## License
 
 MIT
+
+
+
+
+
 
 
 
