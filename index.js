@@ -47,6 +47,7 @@ module.exports = function (url, location, protocolMap, defaultProtocol) {
       protocol: proto,
       slashes: true,
       hostname: url.hostname,
+      port: url.port,
       pathname: url.pathname,
       search: url.search
     })
