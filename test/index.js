@@ -127,4 +127,25 @@ tape('same domain, different port', function (t) {
 })
 
 
+tape("don't mess with url that starts out absolute", function (t) {
+  var location = {
+    protocol: 'http',
+    host: 'localhost:8000',
+  }
+
+  t.equal(
+    rurl('ws://localhost:8000/', { protocol: 'http', host: 'localhost:8000'}, map, def),
+    'ws://localhost:8000/'
+  )
+//  t.equal(
+//    rurl('/', { protocol: 'http', host: 'server.com'}, map, def),
+//    'ws://server.com/'
+//  )
+//  t.equal(
+//    rurl('/', { protocol: 'https', host: 'server.com'}, map, def),
+//    'wss://server.com/'
+//  )
+
+  t.end()
+})
 
