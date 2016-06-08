@@ -26,8 +26,6 @@ module.exports = function (url, location, protocolMap, defaultProtocol) {
 
   var url = URL.parse(url, false, true)
 
-  var protocol_mapping = {'http': 'ws', https: 'wss'}
-
   var proto
   if(url.protocol) proto = url.protocol
   else {
@@ -38,8 +36,6 @@ module.exports = function (url, location, protocolMap, defaultProtocol) {
   //handle quirk in url package
   if(url.host && url.host[0] === ':')
     url.host = null
-
-  console.log(url)
 
   //useful for websockets
   if(url.hostname) {
@@ -93,6 +89,8 @@ module.exports = function (url, location, protocolMap, defaultProtocol) {
 
   return url.format(url)
 }
+
+
 
 
 
